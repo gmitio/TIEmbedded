@@ -9,7 +9,7 @@
  */
 
 
-unsigned long BRDI = 16000000 / (16 * 9600);    // GIT Test
+unsigned long BRDI = 16000000 / (16 * 9600);
 unsigned long BRDF = (0.666666 * 64 + 0.5);
 
 volatile char tmp[100]; // Holds received serial data from UART1 interrupt

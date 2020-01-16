@@ -10,7 +10,7 @@ ST7735.obj: C:/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/sys/_
 ST7735.obj: C:/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/sys/cdefs.h
 ST7735.obj: C:/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/machine/_types.h
 ST7735.obj: C:/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/machine/_limits.h
-ST7735.obj: C:/Users/graison/workspace_v9/UARTTest/SysTick.h
+ST7735.obj: C:/Users/graison/workspace_v9/TIEmbedded/UARTTest/SysTick.h
 
 ../ST7735.c: 
 ../ST7735.h: 
@@ -22,4 +22,4 @@ C:/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/sys/_types.h:
 C:/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/sys/cdefs.h: 
 C:/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/machine/_types.h: 
 C:/ti/ccs910/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/machine/_limits.h: 
-C:/Users/graison/workspace_v9/UARTTest/SysTick.h: 
+C:/Users/graison/workspace_v9/TIEmbedded/UARTTest/SysTick.h: 

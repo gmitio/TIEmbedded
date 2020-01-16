@@ -1,0 +1,29 @@
+/*
+ * PWMTest.h
+ *
+ *  Created on: Dec 2, 2019
+ *      Author: graison
+ */
+
+#ifndef PWMTEST_H_
+#define PWMTEST_H_
+
+
+#define SYSCTL_RCGC0_R          (*((volatile unsigned long *)0x400FE100))
+#define SYSCTL_RCGC2_R          (*((volatile unsigned long *)0x400FE108))
+#define SYSCTL_RCC_R            (*((volatile unsigned long *)0x400FE060))
+
+#define GPIO_PORTB_AFSEL_R      (*((volatile unsigned long *)0x40005420))
+#define GPIO_PORTB_PCTL_R       (*((volatile unsigned long *)0x4000552C))
+#define GPIO_PORTB_DEN_R        (*((volatile unsigned long *)0x4000551C))
+#define GPIO_PORTB_AMSEL_R      (*((volatile unsigned long *)0x40005528))
+#define GPIO_PORTB_ODR_R        (*((volatile unsigned long *)0x4000550C))
+
+#define PWM0_0_GENA_R           (*((volatile unsigned long *)0x40028060))
+#define PWM0_0_GENB_R           (*((volatile unsigned long *)0x40028064))
+#define PWM0_0_CTL_R            (*((volatile unsigned long *)0x40028040))
+#define PWM0_0_LOAD_R           (*((volatile unsigned long *)0x40028050))
+#define PWM0_0_CMPA_R           (*((volatile unsigned long *)0x40028058))
+#define PWM0_ENABLE_R           (*((volatile unsigned long *)0x40028008))
+
+#endif /* PWMTEST_H_ */
