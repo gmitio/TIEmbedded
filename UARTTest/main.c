@@ -6,6 +6,9 @@
 /**
  * main.c for UART serial control
  * PC4 RX and PC5 TX
+ *
+ * Accepts some basic commands over UART serial communication and allows
+ * user to read from the ADC as well as write to the TFT display controlled by the microcontroller
  */
 
 
