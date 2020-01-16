@@ -19,17 +19,28 @@ void i2c_init(void) // Function to initialize transmission to the sensor
     I2C0_MSA_R = 0x90;  // Specify slave address (1001000) and next operation (I2CMSA)
 }
 
-void i2c_transmit(unsigned char data)   // For now let's just try transmitting one byte of data
+int i2c_transmit(unsigned char data)   // For now let's just try transmitting one byte of data
 {
     /** Transmit one byte of data across to the sensor..we'll see if this is successful using Waveforms ADM2    **/
-    // Write data to be transmitted to I2CMDR
-    // Initiate transmission via I2CMCS
-    // Busy wait for transmission to complete by polling I2CMCS BUSBSY bit
-    // Check the ERROR bits in I2CMCS to ensure transmission completed successfully
+
+    I2C0_MDR_R = data & 0xFF;   // Write data to be transmitted to I2CMDR
+    I2C0_MCS_R = 0x07;  // Initiate transmission via I2CMCS
+
+    while(I2C0_MCS_R & 0x40);   // Busy wait for transmission to complete by polling I2CMCS BUSBSY bit
+
+    if(I2C0_MCS_R & 0x02)   // Check the ERROR bits in I2CMCS to ensure transmission completed successfully
+        return 1;   // Error status
+    else
+        return 0;
 
 }
 
 int main(void)
 {
-	return 0;
+    i2c_init();
+    i2c_transmit(0);
+
+    while(1);   // Main program loop
+
+	return 0;   // Should never get here
 }
