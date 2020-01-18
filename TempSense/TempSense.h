@@ -48,6 +48,15 @@ unsigned char num2char(unsigned int num);
  * Defined in TempSense.c **/
 void delay (void);
 
+/** High level function to control the repetitive tasks associated
+ * with accessing i2c, writing data to display, clearing timer flags, etc
+ * Defined in TempSense.c **/
+void ReadTemperature(void);
+
+/** Initializes system timer 0 with interrupts in 32-bit mode
+ * Defined in timer.c  **/
+void Timer0_init(void);
+
 /********** End of Function Prototypes *********/
 
 
