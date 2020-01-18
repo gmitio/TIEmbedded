@@ -1,11 +1,9 @@
-
-
 /**
- * I2CTest.c    Main file for I2CTest, a program designed to run on the TM4C123G to communicate with an
+ * i2c.c    Contains I2C functionality for the TM4C123G to communicate with an
  * Microchip TCN75A I2C Temperature Sensor on I2C0 (SCL PB2, SDA PB3)
  */
 
-#include "tm4c123gh6pm.h"
+#include "TempSense.h"
 
 void i2c_init(void) // Function to initialize transmission to the sensor
 {
@@ -40,18 +38,4 @@ int i2c_transmit(unsigned long data)   // For now let's just try transmitting on
     else
         return 0;
 
-}
-
-unsigned long temp; // Variable to hold temperature data from TCN75A
-int main(void)
-{
-    i2c_init();
-    i2c_transmit(0);    // Poll temperature data from TCN75A
-
-    while(1)
-    {
-        temp = I2C0_MDR_R & 0xFF; // Main program loop
-    }
-
-	return 0;   // Should never get here
 }
