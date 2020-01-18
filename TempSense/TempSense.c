@@ -37,8 +37,3 @@ int main(void)
     }
 	return 0;   // Should never get here
 }
-
-void SysTick_Handler(void)  // SysTick interrupt handler from SysTick.c
-{
-// Not actually used here
-}
