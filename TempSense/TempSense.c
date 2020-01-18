@@ -28,7 +28,7 @@ void ReadTemperature(void)
 }
 
 int main(void)
-{
+//{
     init_display(); // Initialize the display to a black background
     i2c_init();     // Initialize I2C0 to communicate with sensor
     Timer0_init();  // Initialize timer 0 to control the polling of the sensor

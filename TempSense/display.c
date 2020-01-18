@@ -20,7 +20,7 @@ void init_display(void)
     /** Initialize **/
     ST7735_InitR(INITR_BLACKTAB);
     ST7735_FillScreen(ST7735_BLACK);    // Background color
-    ST7735_SetRotation(1);  // Horizontal
+    ST7735_SetRotation(3);  // Horizontal
 }
 
 
