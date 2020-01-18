@@ -6,6 +6,8 @@
 
 #include "TempSense.h"
 
+int lastTemp;   // Holds value of most recently read temperature
+
 unsigned char num2char(unsigned int num)    // Converts unsigned number to ASCII char for display
 {
     if(num <=0x09)
@@ -42,10 +44,42 @@ void write_display(char *writeThis)
     }
 }
 
-void write_temp(int Temperature)
+void write_temp(int Temperature)    // Function to draw the current temperature to the display
 {
-    ST7735_DrawChar(50, 50, num2char(Temperature/10 % 10), ST7735_WHITE, ST7735_BLACK, 4);
-    ST7735_DrawChar(75, 50, num2char(Temperature % 10), ST7735_WHITE, ST7735_BLACK, 4);
-    ST7735_DrawChar(100, 50, 247, ST7735_WHITE, ST7735_BLACK, 2);
-    ST7735_DrawChar(115, 50, 'C', ST7735_WHITE, ST7735_BLACK, 4);
+    if(lastTemp != Temperature) // Only rewrite the display if temperature has changed
+    {
+        ST7735_DrawChar(30, 50, ' ', ST7735_BLACK, ST7735_BLACK, 4);    // Clear the display
+        ST7735_DrawChar(50, 50, ' ', ST7735_BLACK, ST7735_BLACK, 4);
+        ST7735_DrawChar(75, 50, ' ', ST7735_BLACK, ST7735_BLACK, 4);
+
+        if(Temperature < -9)  { // Temperature < -9
+            ST7735_DrawChar(35, 50, '-', ST7735_WHITE, ST7735_BLACK, 4);
+            ST7735_DrawChar(50, 50, num2char(-1*Temperature/10 % 10), ST7735_WHITE, ST7735_BLACK, 4);
+            ST7735_DrawChar(75, 50, num2char(-1*Temperature % 10), ST7735_WHITE, ST7735_BLACK, 4);
+        }
+
+        else if( (Temperature < 0) && (Temperature >= -9) )  {  // -9 <= Temperature < 0
+            ST7735_DrawChar(40, 50, '-', ST7735_WHITE, ST7735_BLACK, 4);
+            ST7735_DrawChar(75, 50, num2char(-1*Temperature % 10), ST7735_WHITE, ST7735_BLACK, 4);
+        }
+
+        else if( (Temperature <= 9) && (Temperature >= 0) )     // 0 <= Temperature <= 9
+            ST7735_DrawChar(75, 50, num2char(Temperature % 10), ST7735_WHITE, ST7735_BLACK, 4);
+
+        else if( (Temperature <= 99) && (Temperature >  9) )  {     // 9 < Temperature <= 99
+            ST7735_DrawChar(50, 50, num2char(Temperature/10 % 10), ST7735_WHITE, ST7735_BLACK, 4);
+            ST7735_DrawChar(75, 50, num2char(Temperature % 10), ST7735_WHITE, ST7735_BLACK, 4);
+        }
+
+        else  {     // Temperature > 99
+            ST7735_DrawChar(30, 50, num2char(Temperature/100 % 10), ST7735_WHITE, ST7735_BLACK, 4);
+            ST7735_DrawChar(50, 50, num2char(Temperature/10 % 10), ST7735_WHITE, ST7735_BLACK, 4);
+            ST7735_DrawChar(75, 50, num2char(Temperature % 10), ST7735_WHITE, ST7735_BLACK, 4);
+        }
+    }
+
+    ST7735_DrawChar(100, 50, 247, ST7735_WHITE, ST7735_BLACK, 2);   // Draw degrees sign
+    ST7735_DrawChar(115, 50, 'C', ST7735_WHITE, ST7735_BLACK, 4);   // Draw C for celsius temperature
+
+    lastTemp = Temperature;
 }

@@ -40,8 +40,11 @@ int main(void)
     while(1)    // Main program loop
     {
 
-        if(readTemp)    // Check if it's time to read the sensor
+        if(readTemp)  {  // Check if it's time to read the sensor
             ReadTemperature();
+        }
+
+           // ReadTemperature();
 
     }
 	return 0;   // Should never get here
