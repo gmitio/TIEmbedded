@@ -57,3 +57,8 @@ void SysTick_Wait1ms(unsigned long delay)
     SysTick_Wait(16000);   // wait 1ms 
   }
 }
+
+void SysTick_Handler(void)  // SysTick interrupt handler from SysTick.c
+{
+// Not actually used here
+}
