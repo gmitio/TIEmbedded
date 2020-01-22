@@ -30,7 +30,7 @@ int i2c_transmit(unsigned long data);
  * Defined in display.c**/
 void init_display(void);
 
-/** Writes a string message to the LCD display
+/** Writes a string message to the LCD display; probably fix to make a more general int to string conversion function
  * Defined in display.c **/
 void write_display(char *writeThis);
 
@@ -56,6 +56,27 @@ void ReadTemperature(void);
 /** Initializes system timer 0 with interrupts in 32-bit mode
  * Defined in timer.c  **/
 void Timer0_init(void);
+
+/** Initializes UART1 serial communication at a specified baud rate
+ * See datasheet for integer (BRDI) and fractional (BRDF) baud rate equations
+ * Defined in uart.c
+ */
+void init_uart(unsigned long BRDI, unsigned long BRDF);
+
+/** Outputs serial message on UART1
+ * Defined in uart.c
+ */
+void UART_OutString(char *string_out);
+
+/** Outputs serial character on UART1
+ * Defined in uart.c
+ */
+void UART_OutChar(unsigned char data);
+
+/** Converts the sensor value to a string containing temperature data
+ * Defined in display.c
+ */
+char *itotemp(int Temperature);
 
 /********** End of Function Prototypes *********/
 

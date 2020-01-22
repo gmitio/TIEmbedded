@@ -83,3 +83,46 @@ void write_temp(int Temperature)    // Function to draw the current temperature 
 
     lastTemp = Temperature;
 }
+
+char temperature_string[16];
+
+char *itotemp(int Temperature)
+{
+
+
+
+    if(Temperature < -9)  { // Temperature < -9
+        temperature_string[0] = '-';
+        temperature_string[1] = num2char(-1*Temperature/10 % 10);
+        temperature_string[2] = num2char(-1*Temperature % 10);
+        temperature_string[3] = 'C';
+    }
+
+    else if( (Temperature < 0) && (Temperature >= -9) )  {  // -9 <= Temperature < 0
+        temperature_string[0] = '-';
+        temperature_string[1] = num2char(-1*Temperature % 10);
+        temperature_string[2] = 'C';
+    }
+
+    else if( (Temperature <= 9) && (Temperature >= 0) )   {  // 0 <= Temperature <= 9
+        temperature_string[0] = num2char(Temperature % 10);
+        temperature_string[1] = 'C';
+    }
+
+    else if( (Temperature <= 99) && (Temperature >  9) )  {     // 9 < Temperature <= 99
+        temperature_string[0] = num2char(Temperature/10 % 10);
+        temperature_string[1] = num2char(Temperature % 10);
+        temperature_string[2] = 'C';
+    }
+
+    else  {     // Temperature > 99
+        temperature_string[0] = num2char(Temperature/100 % 10);
+        temperature_string[1] = num2char(Temperature/10 % 10);
+        temperature_string[2] = num2char(Temperature % 10);
+        temperature_string[3] = 'C';
+    }
+
+
+
+    return temperature_string;
+}
