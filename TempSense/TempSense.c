@@ -36,7 +36,7 @@ void ReadTemperature(void)
 }
 
 char temp_str[4];
-int main(void)
+void main(void)
 {
     init_display(); // Initialize the display to a black background
     i2c_init();     // Initialize I2C0 to communicate with sensor
@@ -55,17 +55,17 @@ int main(void)
 
         if(rx_finish)  {    // If command received
 
-            if(!strcmp(tmp,"/temperature"))  {  // If /temperature command
+            if(!strcmp((char *)tmp,"/temperature"))  {  // If /temperature command
                 ReadTemperature();
                 UART_OutString(itotemp(temp));
                 UART_OutChar('\r'); // Followed by return character
             }
 
-            memset(tmp, '\0', 100); // Clear the command buffer
+            memset((char *)tmp, '\0', 100); // Clear the command buffer
             rx_finish = 0;  // Reset interrupt flag
         }
     }
-	return 0;   // Should never get here
+
 }
 
 // Timer0A ISR, sets flag to poll temperature sensor
