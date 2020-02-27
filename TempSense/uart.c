@@ -13,7 +13,7 @@ void init_uart(unsigned long BRDI, unsigned long BRDF)
     // Enable UART1 (PB0, PB1)
     volatile unsigned long delay_clk;
     SYSCTL_RCGCUART_R |= 0x02;  // Enable UART1
-    SYSCTL_RCGCGPIO_R |= 0x22;  // Enable GPIO pins for UART1 (PORT B and PORT F for general stuff)
+    SYSCTL_RCGCGPIO_R |= 0x32;  // Enable GPIO pins for UART1 (PORT B and PORT F for general stuff)
 
     delay_clk = SYSCTL_RCGCGPIO_R;
 
