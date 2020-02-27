@@ -10,7 +10,7 @@
 #include "TempSense.h"  // Main include for the application; handles all other includes
 
 volatile unsigned short readTemp = 0;   // Flag set by Timer0 interrupt
-int temp;   // Variable to store the temperature
+volatile int temp;   // Variable to store the temperature
 
 volatile char tmp[100]; // Holds received serial data from UART1 interrupt
 volatile int i = 0; // Interrupt incrementor
@@ -36,12 +36,15 @@ void ReadTemperature(void)
 }
 
 char temp_str[4];
+volatile int test;
 void main(void)
 {
+
     init_display(); // Initialize the display to a black background
     i2c_init();     // Initialize I2C0 to communicate with sensor
     init_uart(BRDI, BRDF);  // Initialize UART1 for serial data transmission with its integer and fraction parts of baud rate
     Timer0_init();  // Initialize timer 0 to control the polling of the sensor
+    init_gpio();
 
     ReadTemperature();  // Get the initial reading
     delay();
@@ -51,7 +54,15 @@ void main(void)
     {
 
         if(readTemp)        // Check if it's time to read the sensor
+        {
             ReadTemperature();
+            if(temp > 24)
+                GPIO_PORTE_DATA_R |= 0x08;
+            else
+                GPIO_PORTE_DATA_R &= ~0x08;
+
+
+        }
 
         if(rx_finish)  {    // If command received
 
@@ -64,6 +75,8 @@ void main(void)
             memset((char *)tmp, '\0', 100); // Clear the command buffer
             rx_finish = 0;  // Reset interrupt flag
         }
+
+
     }
 
 }
